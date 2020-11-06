@@ -9,7 +9,7 @@ import numpy as np
 
 def pad_sents(sents, pad_token):
     """ Pad list of sentences according to the longest sentence in the batch.
-    @param sents (list[list[int]]): list of sentences, where each sentence
+    @param sents (list[list[str]]): list of sentences, where each sentence
                                     is represented as a list of words
     @param pad_token (int): padding token
     @returns sents_padded (list[list[str]]): list of sentences where sentences shorter
@@ -19,8 +19,9 @@ def pad_sents(sents, pad_token):
     sents_padded = []
 
     ### YOUR CODE HERE (~6 Lines)
-
-    ### END YOUR CODE
+    max_sent_length = max([len(sent) for sent in sents])
+    for sent in sents:
+        sents_padded.append(sent + [pad_token] * (max_sent_length - len(sent)))
 
     return sents_padded
 
